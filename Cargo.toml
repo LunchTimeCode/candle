@@ -4,4 +4,10 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+rocket ={version = "0.5.0"}
+maud = {version = "0.26"}
 octocrab = "0.42.1"
+webbrowser = "1.0.3"
+
+[profile.dev]
+opt-level = 0
