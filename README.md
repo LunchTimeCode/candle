@@ -1,2 +1,2 @@
 # candle
-brings light into github organizations
+Brings light into github organizations
