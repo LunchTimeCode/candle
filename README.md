@@ -1,10 +1,11 @@
-# candle
-Brings light into github organizations
+
+<div align="center">
+ <h1>Candle</h1>
 
 <div align="center">
 
-  <img src="/assets/candle.jpeg >
+  <img src="/assets/candle.jpeg" > </img>
 
-*Illuminating Your Github Journey*
+*Brings light into github organizations*
 
 </div>
