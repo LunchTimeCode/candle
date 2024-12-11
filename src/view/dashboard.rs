@@ -17,28 +17,29 @@ pub async fn get(state: &State<AppState>) -> content::RawHtml<String> {
 
      }
 
-         }
-
-         body{
-              div {
-                      // GitHub
-                      h3 { "Organizations" }
-                        ul {
-                            @for org in orgs {
-                                li { (org.name()) }
-                            }
+     body{
+          div {
+                  // GitHub
+                  h3 { "Organizations" }
+                    ul {
+                        @for org in orgs {
+                            li { (org.name()) }
                         }
-              }
+                    }
+          }
 
 
+     }
+
+
+     footer {
+          p{
+              "This is a work in progress."
+          }
+     }
          }
 
-
-         footer {
-              p{
-                  "This is a work in progress."
-              }
-         }
+         
 
     }
     .into_string();
