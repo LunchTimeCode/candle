@@ -27,6 +27,8 @@ const CSS: &str = r#"<link rel="stylesheet" href="_assets/app.css">"#;
 const PICO_EXT: &str = r#"<link rel="stylesheet" href="_assets/pico_ext.css">"#;
 const HTMX: &str = r#"<script src="/_assets/htmx.min.js"></script>"#;
 const PICO: &str = r#"<link rel="stylesheet" href="_assets/pico.violet.min.css">"#;
+const ICON: &str =
+    r#"<link rel="icon" type="image/x-icon" href="https://i.ibb.co/RDThxRB/favicon-32x32.png">"#;
 
 pub fn page(markup: Markup) -> Markup {
     html! {
@@ -35,6 +37,7 @@ pub fn page(markup: Markup) -> Markup {
             head {
                 ({scripts()})
                 ({title("Candle")})
+
             }
 
             body class="container" {
@@ -50,6 +53,7 @@ fn scripts() -> Markup {
        (PreEscaped(HTMX))
        (PreEscaped(PICO_EXT))
        (PreEscaped(PICO))
+       (PreEscaped(ICON))
     }
 }
 

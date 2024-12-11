@@ -4,6 +4,9 @@ use rocket::{Build, Rocket};
 extern crate rocket;
 
 mod assets;
+mod github;
+mod remote;
+mod state;
 mod view;
 
 #[launch]
@@ -26,5 +29,6 @@ fn mount(rocket: Rocket<Build>) -> Rocket<Build> {
         routes![view::index, view::nav::get, view::dashboard::get,],
     );
 
-    assets::mount_assets(with_index)
+    let rocket = assets::mount_assets(with_index);
+    state::mount_state(rocket)
 }

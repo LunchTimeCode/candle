@@ -1,8 +1,12 @@
 use maud::html;
-use rocket::response::content;
+use rocket::{response::content, State};
+
+use crate::state::AppState;
 
 #[get("/dashboard")]
-pub fn get() -> content::RawHtml<String> {
+pub async fn get(state: &State<AppState>) -> content::RawHtml<String> {
+    let orgs = state.fetch_organizations().await;
+
     let raw = html! {
 
 
@@ -18,8 +22,15 @@ pub fn get() -> content::RawHtml<String> {
          body{
               div {
                       // GitHub
-                      h3 { "GitHub" }
+                      h3 { "Organizations" }
+                        ul {
+                            @for org in orgs {
+                                li { (org.name()) }
+                            }
+                        }
               }
+
+
          }
 
 
