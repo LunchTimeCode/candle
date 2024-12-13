@@ -26,6 +26,6 @@ pub fn grid_of(any_vec: Vec<Markup>) -> Markup {
 
 pub fn nav_button_with_class(text: &str, path: &str, class: &str) -> Markup {
     html! {
-        button class=(class) hx-get=(path) hx-target="#body" { (text) }
+        button class=(class) hx-post=(path) hx-target="#body" { (text) }
     }
 }

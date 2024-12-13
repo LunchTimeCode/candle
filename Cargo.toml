@@ -9,5 +9,10 @@ maud = {version = "0.26"}
 octocrab = "0.42.1"
 webbrowser = "1.0.3"
 
+candle_viewer = { path = "candle_viewer" }
+tokio = "1.42.0"
+anyhow = "1.0.94"
+
+
 [profile.dev]
 opt-level = 0

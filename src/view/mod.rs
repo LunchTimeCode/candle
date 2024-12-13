@@ -4,15 +4,21 @@ use rocket::response::content;
 mod components;
 pub mod dashboard;
 pub mod nav;
+pub mod org_changed;
+
+#[derive(FromForm)]
+pub struct OrgForm {
+    org: String,
+}
 
 #[get("/")]
-pub fn index() -> content::RawHtml<String> {
+pub async fn index() -> content::RawHtml<String> {
     let raw = page(html! {
         header {
             // load nav always
             div hx-get="/nav" hx-trigger="load" {}
             // load home first
-            div hx-get="/dashboard" hx-trigger="load" hx-target="#body" {}
+            div hx-post="/dashboard" hx-trigger="load" hx-target="#body" {}
         }
 
     body {

@@ -1,10 +1,13 @@
-use maud::html;
-use rocket::response::content;
+use maud::{html, Markup};
+use rocket::{response::content, State};
 
-use crate::view::components::nav_button_with_class;
+use crate::{
+    github::organization::Organization, state::AppState, view::components::nav_button_with_class,
+};
 
 #[get("/nav")]
-pub fn get() -> content::RawHtml<String> {
+pub async fn get(state: &State<AppState>) -> content::RawHtml<String> {
+    let orgs = state.fetch_organizations().await;
     let raw = html! {
         nav {
             ul {
@@ -21,17 +24,38 @@ pub fn get() -> content::RawHtml<String> {
                             height="40"
                             {}
                     }
-
-
-
             }
                      }
             }
             ul {
                 li { (nav_button_with_class("Dashboard", "/dashboard", "outline")) }
+            li{
+
+                    (org_selection(orgs))
+
+             }
             }
+
+
         }
     }
     .into_string();
     content::RawHtml(raw)
+}
+
+fn org_option(org: String) -> Markup {
+    html! {
+           option value=(org) { (org) }
+    }
+}
+
+pub fn org_selection(orgs: Vec<Organization>) -> Markup {
+    html! {
+        select name="org" aria-label="Select" hx-post="/org_changed"  hx-swap="outerHTML" {
+            option selected disabled value="" { ("Org") }
+        @for org in orgs {
+            (org_option(org.name().to_string()))
+        }
+        }
+    }
 }

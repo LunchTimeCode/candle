@@ -1,0 +1,11 @@
+[package]
+name = "candle_viewer"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "candle_viewer"
+path = "src/lib.rs"
+
+[dependencies]
+webbrowser = "1.0.3"
