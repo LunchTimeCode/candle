@@ -8,6 +8,16 @@ use crate::{
 #[get("/nav")]
 pub async fn get(state: &State<AppState>) -> content::RawHtml<String> {
     let orgs = state.fetch_organizations().await;
+    let current_name = match state.current_org().await {
+        Some(o) => o.name(),
+        None => {
+            let co = orgs.clone();
+            co.first()
+                .map(|f| f.name())
+                .unwrap_or("No organization found".to_string())
+        }
+    };
+
     let raw = html! {
         nav {
             ul {
@@ -31,7 +41,7 @@ pub async fn get(state: &State<AppState>) -> content::RawHtml<String> {
                 li { (nav_button_with_class("Dashboard", "/dashboard", "outline")) }
             li{
 
-                    (org_selection(orgs))
+                    (org_selection(orgs, current_name))
 
              }
             }
@@ -49,10 +59,10 @@ fn org_option(org: String) -> Markup {
     }
 }
 
-pub fn org_selection(orgs: Vec<Organization>) -> Markup {
+pub fn org_selection(orgs: Vec<Organization>, first: String) -> Markup {
     html! {
         select name="org" aria-label="Select" hx-post="/org_changed"  hx-swap="outerHTML" {
-            option selected disabled value="" { ("Org") }
+            option selected disabled value="" { (first) }
         @for org in orgs {
             (org_option(org.name().to_string()))
         }

@@ -22,7 +22,7 @@ pub async fn changed(
 
     let clone_orgs = orgs.clone();
 
-    let o = org_selection(clone_orgs);
+    let o = org_selection(clone_orgs, org.clone());
 
     HXResponder {
         inner: content::RawHtml(o.into_string()),
