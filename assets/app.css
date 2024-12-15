@@ -3,7 +3,6 @@
 
 .fixed-container{
     height: 300px;
-    padding-bottom: 3px;
 }
 
 .sidebar{
@@ -33,9 +32,21 @@
     white-space: nowrap;
 }
 
+
 .left-margin{
     margin-left: 70px;
 }
+
+.htmx-indicator{
+     opacity:0;
+     transition: opacity 500ms ease-in;
+ }
+ .htmx-request .htmx-indicator{
+     opacity:1;
+ }
+ .htmx-request.htmx-indicator{
+     opacity:1;
+ }
 
 .skill-tag {
                    display: inline-block;
@@ -52,3 +63,4 @@
                    border-radius: var(--border-radius);
                }
 
+                

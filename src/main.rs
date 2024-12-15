@@ -1,3 +1,5 @@
+use std::env;
+
 use rocket::{Build, Rocket};
 
 #[macro_use]
@@ -10,7 +12,7 @@ mod state;
 mod view;
 
 #[launch]
-fn rocket() -> _ {
+async fn rocket() -> _ {
     let port = 12500;
     let address = "0.0.0.0";
 
@@ -20,6 +22,10 @@ fn rocket() -> _ {
     let rocket = rocket::custom(config);
 
     let url = format!("http://{}:{}", address, port);
+
+    let token = env::var("GITHUB_TOKEN").expect("GITHUB_TOKEN must be set");
+
+    remote::auth(token).await;
 
     println!("starting web view");
     match candle_viewer::view(url.as_str()) {
