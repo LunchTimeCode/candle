@@ -35,13 +35,12 @@ pub fn dashboard(repos: Vec<Repo>, org: String) -> String {
                  div  {
                          // GitHub
                          h3 { "Repos" }
-                           ul {
                                (components::generate_header(headers.clone()))
                                div ."overflow-auto" ."fixed-container" {
 
                                (components::generate_table(repos, headers))
                                }
-                           }
+
                  }
 
 

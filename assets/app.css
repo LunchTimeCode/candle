@@ -48,19 +48,5 @@
      opacity:1;
  }
 
-.skill-tag {
-                   display: inline-block;
-                   padding: 0.2rem 0.8rem;
-                   margin: 0.2rem;
-                   background: var(--primary);
-                   color: var(--primary-inverse);
-                   border-radius: 20px;
-                   font-size: 0.9rem;
-               }
-               .interests {
-                   background: var(--card-background-color);
-                   padding: 1rem;
-                   border-radius: var(--border-radius);
-               }
 
                 
