@@ -12,6 +12,7 @@ webbrowser = "1.0.3"
 candle_viewer = { path = "candle_viewer" }
 tokio = "1.42.0"
 anyhow = "1.0.94"
+static_hero_icons = "0.3.0"
 
 
 [profile.dev]
